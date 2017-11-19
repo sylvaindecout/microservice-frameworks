@@ -13,11 +13,9 @@
 
     <properties>
         <!-- Third-party dependency versions -->
-        <hystrix.version>1.5.10</hystrix.version>
-        <spring-boot.version>1.5.3.RELEASE</spring-boot.version>
-        <spring-web.version>4.3.10.RELEASE</spring-web.version>
+        <hystrix.version>1.5.12</hystrix.version>
+        <spring-boot.version>1.5.8.RELEASE</spring-boot.version>
         <springfox.version>2.7.0</springfox.version>
-        <spring-cloud.version>Brixton.SR7</spring-cloud.version>
     </properties>
 
     <dependencies>

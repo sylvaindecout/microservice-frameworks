@@ -13,13 +13,12 @@
 
     <properties>
         <!-- Third-party dependency versions -->
-        <dagger.version>1.2.2</dagger.version>
-        <restexpress.version>0.11.2</restexpress.version>
-        <jackson.version>2.4.2</jackson.version>
-        <apache-commons-cli.version>1.2</apache-commons-cli.version>
-        <hystrix.version>1.5.10</hystrix.version>
-        <jersey.version>2.8
-        </jersey.version> <!-- Note: it is not possible to upgrade it to 2.9 for it would imply conflicts with RestExpress as to the version of Jackson. -->
+        <dagger.version>1.2.5</dagger.version> <!-- TODO: upgrade towards Dagger2 -->
+        <restexpress.version>0.11.3</restexpress.version>
+        <apache-commons-cli.version>1.4</apache-commons-cli.version>
+        <hystrix.version>1.5.12</hystrix.version>
+        <jersey.version>2.26
+        </jersey.version> <!-- Note: it may have to be necessary to revert to 2.8 in order to avoid conflict with RestExpress for Jackson libs. -->
     </properties>
 
     <dependencies>
@@ -49,20 +48,6 @@
             <artifactId>RestExpress</artifactId>
             <version>${restexpress.version}</version>
         </dependency>
-
-        <!-- Jackson -->
-        <!--
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        -->
 
         <!-- Apache Commons CLI -->
         <dependency>
