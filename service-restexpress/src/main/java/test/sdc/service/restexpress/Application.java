@@ -1,6 +1,5 @@
 package test.sdc.service.restexpress;
 
-import dagger.ObjectGraph;
 import org.apache.commons.cli.*;
 import test.sdc.service.restexpress.option.StartupOption;
 
@@ -31,9 +30,12 @@ public final class Application {
      */
     public static void main(final String[] args) {
         try {
-            final CommandLine commandLine = new GnuParser().parse(STARTUP_OPTIONS, args);
-            final ObjectGraph objectGraph = ObjectGraph.create(new PricingModule(commandLine));
-            final PricingServer server = objectGraph.get(PricingServer.class);
+            final CommandLine commandLine = new DefaultParser().parse(STARTUP_OPTIONS, args);
+            final PricingModule module = new PricingModule(commandLine);
+            final PricingComponent component = DaggerPricingComponent.builder()
+                    .pricingModule(module)
+                    .build();
+            final PricingServer server = component.getPricingServer();
             Executors.newSingleThreadExecutor().submit(server);
         } catch (final ParseException ex) {
             new HelpFormatter().printHelp(COMMAND_LINE_SYNTAX, STARTUP_OPTIONS, true);

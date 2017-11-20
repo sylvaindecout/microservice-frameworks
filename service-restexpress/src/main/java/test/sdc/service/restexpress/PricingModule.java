@@ -14,9 +14,9 @@ import java.net.URI;
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
- * Module in charge of building the dependency graph of the application.
+ * Module in charge of the definition of the dependency graph.
  */
-@Module(injects = {PricingServer.class})
+@Module
 final class PricingModule {
 
     private final Integer port;
@@ -30,7 +30,7 @@ final class PricingModule {
      * @param commandLine application start-up arguments
      * @throws IllegalArgumentException Missing or null arguments
      */
-    public PricingModule(final CommandLine commandLine) {
+    PricingModule(final CommandLine commandLine) {
         checkArgument(commandLine != null, "Input command line is null");
         this.port = StartupOption.PORT.readInt(commandLine);
         this.poolSize = StartupOption.POOL_SIZE.readInt(commandLine);

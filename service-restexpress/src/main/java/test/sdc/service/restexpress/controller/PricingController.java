@@ -16,8 +16,17 @@ public class PricingController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PricingController.class);
 
+    private final PricingService service;
+
+    /**
+     * Constructor.
+     *
+     * @param service service
+     */
     @Inject
-    PricingService service;
+    public PricingController(final PricingService service) {
+        this.service = service;
+    }
 
     /**
      * Handle GET request.

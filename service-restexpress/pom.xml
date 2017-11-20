@@ -13,7 +13,7 @@
 
     <properties>
         <!-- Third-party dependency versions -->
-        <dagger.version>1.2.5</dagger.version> <!-- TODO: upgrade towards Dagger2 -->
+        <dagger.version>2.13</dagger.version>
         <restexpress.version>0.11.3</restexpress.version>
         <apache-commons-cli.version>1.4</apache-commons-cli.version>
         <hystrix.version>1.5.12</hystrix.version>
@@ -31,12 +31,12 @@
 
         <!-- Dagger -->
         <dependency>
-            <groupId>com.squareup.dagger</groupId>
+            <groupId>com.google.dagger</groupId>
             <artifactId>dagger</artifactId>
             <version>${dagger.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.squareup.dagger</groupId>
+            <groupId>com.google.dagger</groupId>
             <artifactId>dagger-compiler</artifactId>
             <version>${dagger.version}</version>
             <optional>true</optional>
