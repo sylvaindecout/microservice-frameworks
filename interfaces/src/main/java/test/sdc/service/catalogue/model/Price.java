@@ -1,5 +1,6 @@
 package test.sdc.service.catalogue.model;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -12,11 +13,24 @@ public final class Price {
     }
 
     public static Price fromDollars(final Double inputValue) {
-        //TODO: check number of decimals, etc.
-        checkArgument(inputValue >= 0, "A price cannot be negative");
+        checkArgument(inputValue >= 0,
+                "A price cannot be negative (input value: %s)", inputValue);
+        final Integer nbDecimals = getNbDecimals(inputValue);
+        checkArgument(nbDecimals <= 2,
+                "A price should not have more than two decimals (input value: %s)", inputValue);
         final Price instance = new Price();
         instance.setValueAsDollars(inputValue);
         return instance;
+    }
+
+    /**
+     * Get number of decimals of input positive value.
+     *
+     * @param inputValue value
+     * @return number of decimals
+     */
+    private static Integer getNbDecimals(final Double inputValue) {
+        return BigDecimal.valueOf(inputValue).stripTrailingZeros().scale();
     }
 
     public Double getValueAsDollars() {
