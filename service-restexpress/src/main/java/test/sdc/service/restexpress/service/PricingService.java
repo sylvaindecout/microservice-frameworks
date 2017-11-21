@@ -1,5 +1,7 @@
 package test.sdc.service.restexpress.service;
 
+import com.codahale.metrics.Meter;
+import com.codahale.metrics.MetricRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import test.sdc.service.catalogue.model.Article;
@@ -20,17 +22,21 @@ public class PricingService {
 
     private final CatalogueClient catalogueClient;
     private final DiscountPolicyClient discountPolicyClient;
+    private final Meter discountMeter;
 
     /**
      * Constructor.
      *
      * @param catalogueClient      interface with catalogue service
      * @param discountPolicyClient interface with discount policy service
+     * @param metrics metric registry
      */
     @Inject
-    public PricingService(final CatalogueClient catalogueClient, final DiscountPolicyClient discountPolicyClient) {
+    public PricingService(final CatalogueClient catalogueClient, final DiscountPolicyClient discountPolicyClient,
+                          final MetricRegistry metrics) {
         this.catalogueClient = catalogueClient;
         this.discountPolicyClient = discountPolicyClient;
+        this.discountMeter = metrics.meter("discount");
     }
 
     /**
@@ -46,6 +52,7 @@ public class PricingService {
             res = null;
         } else {
             final Optional<Discount> discount = this.discountPolicyClient.getApplicableDiscount(article);
+            discount.ifPresent(value -> this.discountMeter.mark());
             final Price initialPrice = article.getPrice();
             res = discount.isPresent()
                     ? discount.get().apply(initialPrice)

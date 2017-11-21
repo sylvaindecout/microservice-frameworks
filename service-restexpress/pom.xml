@@ -19,6 +19,7 @@
         <hystrix.version>1.5.12</hystrix.version>
         <jersey.version>2.26
         </jersey.version> <!-- Note: it may have to be necessary to revert to 2.8 in order to avoid conflict with RestExpress for Jackson libs. -->
+        <metrics.version>3.1.0</metrics.version>
     </properties>
 
     <dependencies>
@@ -80,6 +81,13 @@
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-jackson</artifactId>
             <version>${jersey.version}</version>
+        </dependency>
+
+        <!-- Metrics -->
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-core</artifactId>
+            <version>${metrics.version}</version>
         </dependency>
     </dependencies>
 

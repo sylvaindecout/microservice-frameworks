@@ -1,5 +1,6 @@
 package test.sdc.service.restexpress;
 
+import com.codahale.metrics.MetricRegistry;
 import dagger.Module;
 import dagger.Provides;
 import org.apache.commons.cli.CommandLine;
@@ -80,6 +81,12 @@ final class PricingModule {
     @Singleton
     DiscountPolicyClient provideDiscountPolicyClient() {
         return new DiscountPolicyClient(this.discountPolicyServiceUrl);
+    }
+
+    @Provides
+    @Singleton
+    MetricRegistry provideMetricRegistry() {
+        return new MetricRegistry();
     }
 
 }

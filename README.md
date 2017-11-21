@@ -21,12 +21,19 @@ Configuration includes:
 Custom stack, including:
  - RestExpress for REST capabilities
  - Dagger for injection
+ - Metrics for monitoring
  - Hystrix for fault-tolerance
  - Jersey client for calls other REST services
  - Apache commons CLI for command line parsing
 
 All configuration (but for Hystrix) is set in the command line. Default values are set for all properties.
- 
+
+### How to run
+
+ - Start Application
+ - Test from HTTP client (http://localhost:12345/pricing/1)
+ - Access metrics from JMX console
+
 ## service-springboot
 
 Spring Boot, with modules:
@@ -35,3 +42,10 @@ Spring Boot, with modules:
  - Hystrix for fault-tolerance
 
 All configuration (but for Hystrix) is set in application.properties file.
+
+### How to run
+
+ - Start Application
+ - Test from HTTP client (http://localhost:12345/pricing/1)
+ - Access metrics from JMX console
+ - Access REST documentation from HTTP client (http://localhost:12345/swagger-ui.html)
