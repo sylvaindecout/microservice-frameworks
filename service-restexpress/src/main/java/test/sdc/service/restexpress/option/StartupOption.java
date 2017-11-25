@@ -2,7 +2,6 @@ package test.sdc.service.restexpress.option;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
-import org.apache.commons.cli.OptionBuilder;
 
 import java.net.URI;
 
@@ -58,10 +57,10 @@ public enum StartupOption {
      * @return option
      */
     public Option build() {
-        return OptionBuilder.hasArg().withArgName(this.name)
-                .isRequired(this.isRequired())
-                .withDescription(this.description)
-                .create(this.name);
+        return Option.builder(this.name).hasArg().argName(this.name)
+                .required(this.isRequired())
+                .desc(this.description)
+                .build();
     }
 
     /**
