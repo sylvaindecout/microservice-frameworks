@@ -1,8 +1,8 @@
 package test.sdc.service.restexpress.service;
 
 import com.codahale.metrics.MetricRegistry;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -20,7 +20,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.*;
 
-public class PricingServiceTest {
+class PricingServiceTest {
 
     @Mock
     private CatalogueClient catalogueClient;
@@ -32,13 +32,13 @@ public class PricingServiceTest {
     @InjectMocks
     private PricingService service;
 
-    @Before
-    public void init() {
+    @BeforeEach
+    void init() {
         MockitoAnnotations.initMocks(this);
     }
 
     @Test
-    public void should_call_catalogue_and_discount_policy_services() {
+    void should_call_catalogue_and_discount_policy_services() {
         final String inputRef = "1";
         final Article testArticle = mock(Article.class);
         given(this.catalogueClient.find(inputRef)).willReturn(testArticle);
@@ -50,7 +50,7 @@ public class PricingServiceTest {
     }
 
     @Test
-    public void should_apply_absolute_discount() {
+    void should_apply_absolute_discount() {
         final String inputRef = "1";
         final Article testArticle = mock(Article.class);
         given(testArticle.getPrice()).willReturn(Price.fromDollars(10.));
@@ -64,7 +64,7 @@ public class PricingServiceTest {
     }
 
     @Test
-    public void should_apply_relative_discount() {
+    void should_apply_relative_discount() {
         final String inputRef = "1";
         final Article testArticle = mock(Article.class);
         given(testArticle.getPrice()).willReturn(Price.fromDollars(10.));
@@ -78,7 +78,7 @@ public class PricingServiceTest {
     }
 
     @Test
-    public void should_return_initial_price_if_there_is_no_discount() {
+    void should_return_initial_price_if_there_is_no_discount() {
         final String inputRef = "1";
         final Article testArticle = mock(Article.class);
         given(testArticle.getPrice()).willReturn(Price.fromDollars(10.));
@@ -92,7 +92,7 @@ public class PricingServiceTest {
     }
 
     @Test
-    public void should_return_null_if_article_is_unknown_to_catalogue() {
+    void should_return_null_if_article_is_unknown_to_catalogue() {
         final String inputRef = "12";
         given(this.catalogueClient.find(inputRef)).willReturn(null);
 

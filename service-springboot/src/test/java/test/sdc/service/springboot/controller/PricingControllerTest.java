@@ -1,7 +1,7 @@
 package test.sdc.service.springboot.controller;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -16,7 +16,7 @@ import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.only;
 
-public class PricingControllerTest {
+class PricingControllerTest {
 
     @Mock
     private PricingService service;
@@ -24,13 +24,13 @@ public class PricingControllerTest {
     @InjectMocks
     private PricingController controller;
 
-    @Before
-    public void init() {
+    @BeforeEach
+    void init() {
         MockitoAnnotations.initMocks(this);
     }
 
     @Test
-    public void should_set_code_to_404_for_null_price() {
+    void should_set_code_to_404_for_null_price() {
         final String inputRef = "123";
         final Price expected = null;
         final HttpServletResponse inputResponse = mock(HttpServletResponse.class);
@@ -42,7 +42,7 @@ public class PricingControllerTest {
     }
 
     @Test
-    public void should_return_price() {
+    void should_return_price() {
         final String inputRef = "123";
         final Price expected = Price.fromDollars(12.99);
         final HttpServletResponse inputResponse = mock(HttpServletResponse.class);

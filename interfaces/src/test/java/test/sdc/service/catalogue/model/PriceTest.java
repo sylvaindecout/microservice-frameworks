@@ -1,27 +1,27 @@
 package test.sdc.service.catalogue.model;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNullPointerException;
 
-public class PriceTest {
+class PriceTest {
 
     @Test
-    public void should_reject_null_value() {
+    void should_reject_null_value() {
         final Double inputValue = null;
         assertThatNullPointerException().isThrownBy(() -> Price.fromDollars(inputValue));
     }
 
     @Test
-    public void should_reject_negative_value() {
+    void should_reject_negative_value() {
         final Double inputValue = -1.;
         assertThatIllegalArgumentException().isThrownBy(() -> Price.fromDollars(inputValue))
                 .withMessageContaining(String.valueOf(inputValue));
     }
 
     @Test
-    public void should_reject_value_with_too_many_decimals() {
+    void should_reject_value_with_too_many_decimals() {
         final Double inputValue = 1.123;
         assertThatIllegalArgumentException().isThrownBy(() -> Price.fromDollars(inputValue))
                 .withMessageContaining(String.valueOf(inputValue));
