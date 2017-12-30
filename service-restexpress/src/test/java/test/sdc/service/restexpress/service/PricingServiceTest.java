@@ -1,10 +1,12 @@
 package test.sdc.service.restexpress.service;
 
+import com.codahale.metrics.MetricRegistry;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 import test.sdc.service.catalogue.model.Article;
 import test.sdc.service.catalogue.model.Price;
 import test.sdc.service.discount.model.AbsoluteDiscount;
@@ -24,6 +26,8 @@ public class PricingServiceTest {
     private CatalogueClient catalogueClient;
     @Mock
     private DiscountPolicyClient discountPolicyClient;
+    @Spy
+    private MetricRegistry metrics;
 
     @InjectMocks
     private PricingService service;
