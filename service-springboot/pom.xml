@@ -14,7 +14,7 @@
     <properties>
         <!-- Third-party dependency versions -->
         <hystrix.version>1.5.12</hystrix.version>
-        <spring-boot.version>1.5.8.RELEASE</spring-boot.version>
+        <spring-boot.version>2.5.12</spring-boot.version>
         <springfox.version>2.7.0</springfox.version>
     </properties>
 
